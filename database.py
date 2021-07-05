@@ -77,5 +77,6 @@ def getAllUsers():
     conn.text_factory = str
     sqlstr = "SELECT chat_id FROM userdata"
     cur.execute(sqlstr)
+    print("Ritorno gli utenti")
     return cur.fetchall()
 

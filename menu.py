@@ -17,15 +17,18 @@ def generate_message(chat_id):
     if opening():
         if lang == "en":
             msg.append('Hey, time for Taffa❗')
-            msg.append('Opening hours: ', opening())
+            open = 'Opening hours: ' + opening()
+            msg.append(open)
             msg.append('Today\'s menu ⬇️')
         if lang == "fi":
             msg.append('Hei, aika Taffalle❗')
-            msg.append('Aukioloajat: ', opening())
+            open = 'Aukioloajat: ' + opening()
+            msg.append(open)
             msg.append('Tämän päivän valikko ⬇️')
         if lang == "sv":
             msg.append('Hej, dags för Taffa❗')
-            msg.append('Öppettider: ', opening())
+            open = 'Öppettider: ' + opening()
+            msg.append(open)
             msg.append('Dagens meny ⬇️')
         msg.append(" ")
         msg.append(get_today_menu(lang))

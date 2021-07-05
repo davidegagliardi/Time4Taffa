@@ -5,12 +5,10 @@ import time
 
 from database import loadDB, checkUser, updateLanguage, getLanguage, delUser
 from menu import generate_message
-from daily import dailyMenu
 import os
-import schedule
 import datetime
 
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, InlineQueryHandler
 
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -29,10 +27,12 @@ def en(update, context):
     update.message.reply_text("Language switched to english 🇬🇧")
     chat_id = update.message.chat_id
     updateLanguage(update, chat_id, "en")
+
 def fi(update, context):
     update.message.reply_text("Kieli vaihdettu suomeksi 🇫🇮")
     chat_id = update.message.chat_id
     updateLanguage(update, chat_id, "fi")
+
 def sv(update, context):
     update.message.reply_text("Språket bytte till svenska 🇸🇪")
     chat_id = update.message.chat_id
@@ -54,19 +54,11 @@ def about(update, context):
 def error(update, context):
     """Log Errors caused by Updates."""
     logger.warning('Update "%s" caused error "%s"', update, context.error)
-def test():
-    print("Qui")
+
 def main():
     updater = Updater(os.environ['TOKEN'], use_context=True)
-    # while True:
-    #     HOUR = datetime.datetime.now().hour
-    #     MINUTE = datetime.datetime.now().minute
-    #     if HOUR == 18 and MINUTE == 34:
-    #         dailyMenu()
-    #     time.sleep(60)
 
     dp = updater.dispatcher
-
     #Commands
     dp.add_handler(CommandHandler("start", start))
     dp.add_handler(CommandHandler("stop", stop))
