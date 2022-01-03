@@ -11,6 +11,7 @@ def dailyMenu():
         userlist = getAllUsers()
         users = [x[0] for x in userlist]
         for user in users:
+            print(user)
             message = generate_message(user)
             bot = telegram.Bot(token=os.environ['TOKEN'])
             bot.sendMessage(chat_id=user, text=message, disable_notification='TRUE')
